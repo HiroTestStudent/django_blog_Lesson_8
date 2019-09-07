@@ -35,7 +35,14 @@ def list_view(request):
     #body = template.render(context)
     return render(request, 'blogging/list.html', context) # lecture note shows 'list.html' mistakenly.
 
-    
+def detail_view(request, post_id):
+    published = Post.objects.exclude(published_date__exact=None)
+    try:
+        post = published.get(pk=post_id)
+    except Post.DoesNotExist:
+        raise Http404
+    context = {'post': post}
+    return render(request, 'blogging/detail.html', context)
 
 
 
