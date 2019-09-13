@@ -32,13 +32,19 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth', # L8 Facebook Addon
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
+    'django.contrib.messages', # L8 Facebook Addon
     'django.contrib.staticfiles',
     'polling',
     'blogging',
+    'django.contrib.sites', # Lesson 8 Facebook Addon
+    'allauth', # L8 Facebook Addon
+    'allauth.account', # L8 Facebook Addon
+    'allauth.socialaccount', # L8 Facebook Addon
+    'allauth.socialaccount.providers.facebook', # L8 Facebook Addon
+    'allauth.socialaccount.providers.github',
 ]
 
 MIDDLEWARE = [
@@ -61,9 +67,14 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.template.context_processors.request', # Lesson 8 Facebook Addon
+                #'django.core.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #'allauth.account.context_processors.account',
+                #'allauth.socialaccount.context_processors.socialaccount',
+
+
             ],
         },
     },
@@ -102,6 +113,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # Lesson 8 Facebook Addon
+    'allauth.account.auth_backends.AuthenticationBackend', # Lesson 8 Facebook Addon
+
+    )
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -122,6 +141,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
+
+SITE_ID = 1 # L8 Facebook Addon
+
+LOGIN_REDIRECT_URL = '/profile/'
 
 
 

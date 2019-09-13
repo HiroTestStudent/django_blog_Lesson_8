@@ -9,5 +9,6 @@ from blogging.views import detail_view
 urlpatterns = [
     path('', list_view, name="blog_index"),
     path('posts/<int:post_id>/', detail_view, name="blog_detail"),
+    #url(r'^accounts/', include('allauth.urls')),
 ]
 
